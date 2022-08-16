@@ -13,7 +13,7 @@ if ($pathContent -ne $null)
   }
 }
 #
-git remote set-url origin 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@github.com/aecolos/fastpage
+git remote set-url origin https://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@github.com/aecolos/fastpage
 git add .
 git commit -m "upload docx"
 git pull --rebase origin master
