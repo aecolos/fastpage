@@ -9,10 +9,11 @@ if ($pathContent -ne $null)
   }
   else
   {
-    sudo setx PATH %PATH%;"../../PortableGit/bin"
+    #sudo setx PATH %PATH%;"../../PortableGit/bin"
   }
 }
 #
+git remote set-url origin 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@github.com/aecolos/fastpage
 git add .
 git commit -m "upload docx"
 git pull --rebase origin master
