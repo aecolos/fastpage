@@ -1,1 +1,0 @@
-pwsh.exe -noexit -file publish.ps1 -ExecutionPolicy Bypass
