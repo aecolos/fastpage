@@ -1,15 +1,1299 @@
----
-layout: home
-search_exclude: true
-image: images/logo.png
----
+<!DOCTYPE html>
+<!--
+* Copyright 2017 Agência para a Modernização Administrativa, IP.
+* Licenciado nos termos da EUPL, versão 1.1
+* A utilização desta obra está condicionada aos termos da
+ Licença.
+* É possível obter uma cópia da Licença em: http://ec.europa.eu/idabc/eupl.html
+* Salvo requisito da legislação aplicável ou acordo
+ expresso por escrito, o software distribuído nos termos
+ da Licença é distribuído SEM GARANTIAS OU CONDIÇÕES DE QUALQUER ESPÉCIE,
+ Expressas ou implícitas.
+*/ -->
+<html>
+	<head>
+		<title>AEColos - Agrupamento de Escolas de Colos</title>
+		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<meta content="initial-scale=1.0, width=device-width" name="viewport">
+		<link href="./images/favicon.ico" rel="Shortcut Icon">
+		<link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+		<link href="./css/main.css" rel="stylesheet" type="text/css">
+		<script lang="javascript" src="./js/xlsx.full.min.js"></script>
+		<script src="https://unpkg.com/lunr/lunr.js"></script>
+		<script src="./dist/bundle.js"></script>
+		<script>
+			window.Papercups = {
+			  config: {
+				// Pass in your Papercups account token here after signing up
+				token: 'aceb76fc-dd76-4426-859e-ffe8754b0b40',
+				// Specify a Papercups inbox
+				inbox: 'c0b750af-5636-40dc-a42d-f1dc4da9d131',
+				title: 'Chatbox AEColos',
+				subtitle: 'O chat da AEColos 😊',
+				newMessagePlaceholder: 'Começe a escrever...',
+				primaryColor: '#13c2c2',
+				// Optionally pass in a default greeting
+				greeting: 'Olá, como podemos ajudar?',
+				// Optionally pass in metadata to identify the customer
+				customer: {
+				  name: 'Test User',
+				  email: 'test@test.com',
+				  external_id: '123',
+				  metadata: {version: 1, plan: 'premium'}, // Custom fields go here
+				},
+				// Optionally specify the base URL
+				baseUrl: 'https://app.papercups.io',
+				// Add this if you want to require the customer to enter
+				// their email before being able to send you a message
+				requireEmailUpfront: true,
+				// Add this if you want to indicate when you/your agents
+				// are online or offline to your customers
+				showAgentAvailability: false,
+			  },
+			};
+		  </script>
+		  <!--<script
+			type="text/javascript"
+			async
+			defer
+			src="https://app.papercups.io/widget.js"
+		  ></script>-->
+		  <script src="https://unpkg.com/page/page.js"></script>
+		  <script type="text/javascript" src="https://sdk.userbase.com/2/userbase.js"></script>
+		  <script type="text/javascript" src="./js/jquery-3.1.1.min.js"></script>
+		  <script type="text/javascript" src="https://rickharrison.github.io/validate.js/validate.min.js"></script>
+		  <!--<script src="https://accounts.google.com/gsi/client" async defer></script>-->
+		  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jose/4.5.1/index.js" integrity="sha512-hK+T5uPXwFerOkYvaYbPe+4r+8d134ed4rbBLCUdlTI2arG+lEhNh6ghPj36s9hbjcnWZNGrQ6DzFjCVXp30AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/jose/4.5.3/index.js" integrity="sha512-hK+T5uPXwFerOkYvaYbPe+4r+8d134ed4rbBLCUdlTI2arG+lEhNh6ghPj36s9hbjcnWZNGrQ6DzFjCVXp30AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/jose/4.5.3/index.bundle.min.js" integrity="sha512-cV9+eI88OTSRKCxx6lRccIijLOn1pNFi1YdkcSpmQIm7S2J6oMH6JWMwgOpfxRlAYvtvuHj/Q7E0zUSpH4Pm1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+		  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jose/4.5.3/index.umd.min.js" integrity="sha512-ueNcWOk/TXwwEJ4YPnNc5scGtU/viOjkeclOQigF10nrJErzuO/tb/X9k/boUjAHACGla3luJ/aIj23tWqYLLA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		  <script language="JavaScript" type="text/javascript"
+			src="https://kjur.github.io/jsrsasign/jsrsasign-latest-all-min.js">
+		</script>-->
+		  <script>
+			  let prof = {}, isAuthenticated = false;
+			/*async function handleCredentialResponse(response) {
+			  console.log("Encoded JWT ID token: " + response.credential);
+			  const claims = jose.decodeJwt(response.credential);
+			  console.log(claims);
 
-This site is built with [fastpages](https://github.com/fastai/fastpages), An easy to use blogging platform with extra features for Jupyter Notebooks.
+			  const profs = ['administrador@aecolos.pt','anaazevedo@aecolos.pt','anabelasequeira@aecolos.pt','anaisafreitas@aecolos.pt','ananaves@aecolos.pt','anapereira@aecolos.pt','carlafrancisco@aecolos.pt','carlosbalao@aecolos.pt','claudiapato@aecolos.pt','elisabetemachado@aecolos.pt','elsalobao@aecolos.pt','engracianunes@aecolos.pt','helderhenriques@aecolos.pt','heliapatricio@aecolos.pt','luismartins@aecolos.pt','marcomarques@aecolos.pt','mariaguerreiro@aecolos.pt','marialeitao@aecolos.pt','mariamalvassilva@aecolos.pt','mariaricardo@aecolos.pt','mariasergio@aecolos.pt','mariliamoura@aecolos.pt','marinamogo@aecolos.pt','monicanicolau@aecolos.pt','neliaguerreiro@aecolos.pt','patriciacamacho@aecolos.pt','paulapereira@aecolos.pt','paulomaeiro@aecolos.pt','pedrocaria@aecolos.pt','pedromartins@aecolos.pt','pedroroque@aecolos.pt','rosariocaro@aecolos.pt','sandrasoares@aecolos.pt','vandaparreira@aecolos.pt','vitorparracho@aecolos.pt', 'test@aecolos.pt'];
 
-![]({{site.baseurl}}/images/diagram.png "https://github.com/fastai/fastpages")
+			  var certStr = "-----BEGIN CERTIFICATE-----\nMIIDJjCCAg6gAwIBAgIIYHTVZBeyvaUwDQYJKoZIhvcNAQEFBQAwNjE0MDIGA1UE\nAwwrZmVkZXJhdGVkLXNpZ25vbi5zeXN0ZW0uZ3NlcnZpY2VhY2NvdW50LmNvbTAe\nFw0yMjAzMTIxNTIxNDFaFw0yMjAzMjkwMzM2NDFaMDYxNDAyBgNVBAMMK2ZlZGVy\nYXRlZC1zaWdub24uc3lzdGVtLmdzZXJ2aWNlYWNjb3VudC5jb20wggEiMA0GCSqG\nSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCkVzAXaChIi28uEwlHW7SI+7Yc7fDLpJKm\nmbOAhJaREi0idu5/aVZ1AG3fHjmZmxL15efq32VRied247kytW0DUqh5mEd9IlnK\nwg+H1Lu9tTv+ZX1JodLIU845mvmOlTYuE0l6Fap6TsxMnsV9SnWyDG2dS759+sW8\nymh1Rbl6I0xxGZ0it3U7X75aUylDyw2T4pVNvwzwo8PRJjP7yQksDAidQorQSbFe\nOdg9+8H1E7z8YsBTuOh2ZNxUwPbk94DU1G9irDOklRh+EBSE+0T+tlf7DGfS51Z1\n0NCqKFTtP+lPGJl71HSsjSICD76lXR/V1ic1+tloHu95Cr9cV+8rAgMBAAGjODA2\nMAwGA1UdEwEB/wQCMAAwDgYDVR0PAQH/BAQDAgeAMBYGA1UdJQEB/wQMMAoGCCsG\nAQUFBwMCMA0GCSqGSIb3DQEBBQUAA4IBAQBXlRkeiGFA+GU9v8S9WXbDTan+4fWQ\njxEg2Tcpn9CveOieY8s5dkNaf0/L9ofRJjxz/0Q+b/I2tt7w24zz6ZVLXOWa/9ol\n2tov9hMCJ2wRgjvwoDcbmrrxtwQBEEKxFIQlg3nsO6rXJXA1WF2QxeLZyLIxCNC3\noiQNW4n0rm5RXYGyD9HrWF5+SwWIIczw4z590EhcBbaZUBrnM5bDqgBSpQ9lTymZ\noExx/8M2MRqw87/xPd+WMsD1YzLQYbaWdjC4UE2AP8/FtiewGJKPC5KsbrBxVkwN\nVR/B/kYlpBhmSZVOzH+69eay/E9KyofhxGSD9a9hesxFQ3Y4AkNNJdi7\n-----END CERTIFICATE-----\n";
 
-[fastpages](https://github.com/fastai/fastpages) automates the process of creating blog posts via GitHub Actions, so you don't have to fuss with conversion scripts.  A full list of features can be found on [GitHub](https://github.com/fastai/fastpages).  
+			  var pubkey = KEYUTIL.getKey(certStr);
 
-You can edit the `index.html` file to change this content.
+			  var isValid = KJUR.jws.JWS.verifyJWT(response.credential, pubkey, 
+                                     {alg: ['HS256'],
+										iss: ['accounts.google.com', 'https://accounts.google.com'],
+                                      aud: ['825127393936-35joujls5t3ula7t071hhd3s5b9ci4i8.apps.googleusercontent.com']});
 
-# Posts
+			console.log(isValid);
+			//isAuthenticated = false;
+			if(claims.hd === "aecolos.pt" && profs.includes(claims.email)){console.log('in');
+				//claims.sub
+			  	//claims.name
+			  	//claims.email
+
+				  prof = {    "email": claims.email,    "token": response.credential,    "username": claims.name,    "bio": "",    "image": null  }
+
+				  fetch('https://dpolep.sse.codesandbox.io/users', {
+					method: 'POST', // or 'PUT'
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify(prof),
+					})
+					.then(response => response.json())
+					.then(data => {
+						console.log('Success:', data);
+					})
+					.catch((error) => {
+						console.error('Error:', error);
+					});
+			  }*/
+
+			  /*const publicKey = await jose.importJWK({
+				"e": "AQAB",
+				"use": "sig",
+				"alg": "RS256",
+				"n": "pFcwF2goSItvLhMJR1u0iPu2HO3wy6SSppmzgISWkRItInbuf2lWdQBt3x45mZsS9eXn6t9lUYnnduO5MrVtA1KoeZhHfSJZysIPh9S7vbU7_mV9SaHSyFPOOZr5jpU2LhNJehWqek7MTJ7FfUp1sgxtnUu-ffrFvMpodUW5eiNMcRmdIrd1O1--WlMpQ8sNk-KVTb8M8KPD0SYz-8kJLAwInUKK0EmxXjnYPfvB9RO8_GLAU7jodmTcVMD25PeA1NRvYqwzpJUYfhAUhPtE_rZX-wxn0udWddDQqihU7T_pTxiZe9R0rI0iAg--pV0f1dYnNfrZaB7veQq_XFfvKw",
+				"kid": "729189450d49028570425266f03e737f45af2932",
+				"kty": "RSA"
+			}, 'PS256');
+
+			  const { payload, protectedHeader } = await jose.jwtVerify(response.credential, publicKey);
+
+				console.log(protectedHeader);
+				console.log(payload);*/
+			//}
+
+			function blogEvH(ev){console.log(Object.keys(prof).length);
+				let blogWin;
+				if(Object.keys(prof).length > 0){ //'user' in prof
+					ev.preventDefault();
+
+					console.log(ev,prof);
+					blogWin = window.open('./prof');console.log(blogWin);
+					//if(isAuthenticated) return;
+					blogWin.user = prof;
+					blogWin.onload = () => {console.log('postMsg');
+						blogWin.postMessage(prof, self.origin);
+					}
+					isAuthenticated = true;
+				}
+				else return;
+			}
+
+			/*window.onload = function () {
+			  google.accounts.id.initialize({
+				client_id: "825127393936-35joujls5t3ula7t071hhd3s5b9ci4i8.apps.googleusercontent.com", //"48605540055-sf9af5mubdgvoi5bfh47g8jqcnd29n0g.apps.googleusercontent.com",
+				callback: handleCredentialResponse
+				//ux_mode: "redirect",
+				//login_uri: "https://2g7t06.sse.codesandbox.io/token"
+			  });
+			  google.accounts.id.renderButton(
+				document.getElementById("buttonDiv"),
+				{ theme: "outline", size: "large" }  // customization attributes
+			  );
+			  google.accounts.id.prompt(); // also display the One Tap dialog
+			}*/
+		</script>	
+	</head>
+	<body class="homepage">
+		<!--begin modal box-->
+		<style>
+			/* The Modal (background) */
+			.modal {
+			  display: none; /* Hidden by default */
+			  position: fixed; /* Stay in place */
+			  z-index: 1; /* Sit on top */
+			  padding-top: 100px; /* Location of the box */
+			  left: 0;
+			  top: 50px;
+			  width: 100%; /* Full width */
+			  height: 100%; /* Full height */
+			  overflow: auto; /* Enable scroll if needed */
+			  background-color: rgb(0,0,0); /* Fallback color */
+			  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			}
+			
+			/* Modal Content */
+			.modal-content {
+			  background-color: #fefefe;
+			  margin: 0;
+			  padding: 20px;
+			  border: 1px solid #888;
+			  width: 80%;
+			}
+			
+			/* The Close Button */
+			.close {
+			  color: #aaaaaa;
+			  float: right;
+			  font-size: 28px;
+			  font-weight: bold;
+			}
+			
+			.close:hover,
+			.close:focus {
+			  color: #000;
+			  text-decoration: none;
+			  cursor: pointer;
+			}
+			</style>
+		<div id="regis-modal" class="dialog-box-wrapper modal" style="display:none">
+			<div class="dialog-box modal-content">
+				<div class="close">
+					<i class="icon-remove-sign">&nbsp;</i>
+				</div>
+				<div class="dialog-header">
+					<i class="icone-icons">&nbsp;</i>
+					<h4>Registo de Novo Utilizador</h4>
+				</div>
+				<div class="dialog-body"></div>
+			</div>
+		</div>
+		<script>
+			document.querySelector('.close').onclick = () => {
+				document.querySelector('#regis-modal').style.display = 'none';
+			};
+		</script>
+		<!--end modal box-->
+		<div class="toTop"><i class="icon-angle-up"></i></div>
+		<div class="search-box">
+			<div>
+		    	<i class="icon-remove">&nbsp;</i>
+		    	<input placeholder="Pesquisar..." type="text" /> <i class="icon-angle-right">&nbsp;</i>
+		    </div>
+		</div>
+		<div class="container-fluid" id="wrapper">
+			<header id="banner"> 
+				<div id="heading"> 
+					<nav class="horizontal-menu type2">
+						<div> 
+							<div class="lang-wrapper">
+								<i class="icon-globe"></i> 
+								<select id="selectLang"> 
+									<option value="en">EN</option>
+									<option value="pt">PT</option>
+								</select>
+							</div> 
+
+							<a href="./"><img src="https://static.wixstatic.com/media/5d46ae_e8d8e27385624347bf722c6927969084~mv2.jpg/v1/fill/w_60,h_84,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_e8d8e27385624347bf722c6927969084~mv2.webp" alt="AMA-Template" /></a>
+							<i class="icone-burguer"></i> 
+
+							<ul id="menulist"> 
+								<!--empty li to overcome vertical-align bug-->
+								<li class="lfr-nav-item" style="vertical-align:middle"></li>
+								<li class="lfr-nav-item" id="layout_0"> 
+									<a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_7d2459348158494782ff6ff4d8310373.pdf" target="_blank"><span>Covid</span></a> 
+								</li> 
+								<li class="lfr-nav-item selected active" id="layout_1"> 
+									<a href="./"><span>Início</span></a> 
+								</li> 
+								<li class="lfr-nav-item dropdown" id="layout_2"> 
+									<a class="dropdown-toggle" href="javascript:void(0);"><span>Apoio<b class="icon-caret-down"></b></span></a> 
+									<ul class="sub-menu"> 
+										<li class="lfr-nav-item" id="layout_3">
+											<a href="https://github.com/aecolos/aecolos" target="_blank">Q&A Forum</a>
+										</li> 
+										<li class="lfr-nav-item" id="layout_4">
+											<!--<a href="javascript:void(0)" target="_blank" onclick="blogEvH(event)">Blog</a>-->
+											<a href="https://blog-aecolos.glitch.me/" target="_blank">Blog</a>
+										</li>
+										<li class="lfr-nav-item" id="layout_5">
+											<a href="https://github.com/aecolos/site/wiki/Recursos-Educativos" target="_blank">Recursos Educativos</a> 
+										</li>
+										<li class="lfr-nav-item" id="layout_6">
+											<a href="https://aecolos.miraheze.org/wiki/Escola" target="_blank">Wiki</a>
+										</li>
+										<!--<li class="lfr-nav-item" id="layout_10">
+											<a href="https://app.stackbit.com/studio/61995921e0667c00c8bdea40/" target="_blank">Stackbit</a>
+										</li>-->
+										<li class="lfr-nav-item" id="layout_11">
+											<a href="javascript:void(0);">CMS</a>
+										</li>
+									</ul>
+								</li>
+								<li class="lfr-nav-item" id="layout_1"> 
+									<a href="agrupamento.html"><span>Escola</span></a> 
+								</li>
+								<li class="lfr-nav-item" id="layout_1"> 
+									<a href="orgaos.html"><span>Orgãos</span></a> 
+								</li>
+								<!--<li class="lfr-nav-item" id="layout_7"> 
+									<a href="./pagina-de-texto"><span>Página Texto</span></a> 
+								</li> 
+								<li class="lfr-nav-item" id="layout_8">
+									<a href="./formulario"><span>Formulário</span></a>
+								</li>
+								<li class="lfr-nav-item" id="layout_9">
+									<a href="./noticias"><span>Notícias</span></a> 
+								</li>-->
+								<!--<li class="lfr-nav-item dropdown" id="layout_10"> 
+									<a class="dropdown-toggle" href="javascript:void(0);"><span>Acesso<b class="icon-caret-down"></b></span></a> 
+									<div id="submenu" class="sub-menu">
+										<div id="buttonDiv"></div>
+										<div class="form-wrapper">
+											<div class="row-fluid">
+												<div class="span9">
+													<label class="animateInput">
+														<input id="signup-username" type="text" required placeholder="Username">
+														<span>Nome*</span>
+													</label>
+												</div>
+											</div>
+											<div class="row-fluid">
+												<div class="span9">
+													<label class="animateInput">
+														<input id="signup-password" type="password" required placeholder="Password">
+														<span>Email*</span>
+													</label>
+												</div>
+											</div>
+											<div class="btnWrapper">
+												<button id="btnPrevious" class="button1">Sign</button>
+												<button id="btnNext" class="button">Register</button> 
+											</div>
+										</div>
+									</div>-->
+									<!--init templates-->
+									<template id="tmpl_regisform">
+										<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+										<form class="pure-form" id="signup-form" name="regis_form">
+											<fieldset>
+												<legend></legend>
+												<input id="signup-username" type="email" placeholder="Email" maxlength=32 />
+												<input id="signup-password" name="password" type="password" placeholder="Insira a password pretendida" minlength=8 maxlength=32 />
+												<input id="signup-password-confirm" name="password_confirm" type="password" placeholder="Repita a password inserida para confirmação" minlength=8 maxlength=32 />
+												<!--<label for="default-remember">
+													<input type="checkbox" id="default-remember" /> Remember me
+												</label>-->
+											</fieldset>
+										</form>
+										<button id="regbtn" class="pure-button pure-button-primary" onclick="handleSignUp(event)">Registar</button>
+										<div id="signup-msg"></div>
+										<script>
+											function handleSignUp(e) {
+												e.preventDefault()
+									
+												if (e.target.className.includes('pure-button-disabled'))
+													return
+												
+												//e.target retargets on setTimeout
+												let target = e.target;
+									
+												const username = jQuery(e.target).prev().find('input#signup-username').get(0).value
+												const password = jQuery(e.target).prev().find('input#signup-password').get(0).value
+												const passrepeat = jQuery(e.target).prev().find('input#signup-password-confirm').get(0).value
+									
+												//native form validation
+												if(password === passrepeat){}
+												else {
+													const ipass = jQuery(e.target).prev().find('input#signup-password-confirm').get(0)
+													//const valid = ipass.validity
+													ipass.setCustomValidity('As passwords não coincidem')
+													return
+												}
+									
+												//form validation with validate.js
+												var validator = new FormValidator('regis_form', [{
+													name: 'password',
+													rules: 'required'
+												}, {
+													name: 'password_confirm',
+													display: 'password confirmation',
+													rules: 'required|matches[password]'
+												}], function(errors, event) {
+													if (errors.length > 0) {
+														// Show the errors
+													}
+												});
+									
+												jQuery(e.target).after('<div class="loaders-wrapper"><div class="loader-box type2"><img src="https://usabilidade.gov.pt/documents/20142/33326/loader2.gif/70713b8a-3c45-ad02-c783-9272e2e56206?t=1541159384771"/><p>a carregar</p></div></div>')
+									
+												/*setTimeout(() => {
+													jQuery(target).next().remove()
+													let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+													jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+													jQuery(target).next().get(0).appendChild(span.get(0))
+													target.className += "pure-button-disabled"
+													//jQuery(target).next().get(0).appendChild(jQuery(`<span style='color:green'>Sucesso!<i style="content: \'\\f00c\';">&nbsp;</i></span>`).get(0)) 
+												}, 3000)*/
+									
+												//todo: check if user already registered
+									
+												userbase.signUp({ username, password, rememberMe: 'none' })
+												.then((user) => {jQuery(target).next().get(0).innerHTML = `<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i><style>#icok:before{content: "\\f00c";}</style></span>`;target.className += "pure-button-disabled"})
+												.catch((e) => {jQuery(target).next().get(0).innerHTML = `<span style='color:red'<i class="icon-remove">&nbsp;</i>${e}</span>`})
+											}
+									
+											//document.getElementById('signup-form').addEventListener('submit', handleSignUp)
+											//document.getElementById('regbtn').addEventListener('click', handleSignUp)
+											//$('.dialog-body').on('click', handleSignUp)
+										</script>
+									</template>
+									
+									<template id="tmpl_logform">
+										<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+										<script>
+											let session
+											function onregis(ev) {
+												ev.preventDefault();
+												document.querySelector('#regis-modal').style.display = "block";
+												let shregis = document.querySelector('.dialog-body').attachShadow({mode:'open'});
+												shregis.appendChild(document.querySelector('#tmpl_regisform').content.cloneNode(true));
+											}
+											document.querySelector('.close-dialog').onclick = function(){
+												document.querySelector('#regis-modal').style.display = "none";
+											};
+											function onlog(e) {
+												e.preventDefault();
+									
+												if (e.target.className.includes('pure-button-disabled'))
+													return
+									
+													document.querySelector('#submenu').style.display = "block"
+												
+												//e.target retargets on setTimeout
+												let target = e.target
+												window.submenu = e.target.parentNode
+												window.anchor = jQuery('#layout_10 > a:first')
+												//console.log(submenu.querySelectorAll('button'))
+												window.btns = submenu.querySelectorAll('button')
+												//window.lay10 = document.querySelector('#tmpl_logform').content.cloneNode(true)
+									
+												const username = jQuery(e.target).prev().find('input#stacked-email').get(0).value
+												const password = jQuery(e.target).prev().find('input#stacked-password').get(0).value
+									
+												jQuery(e.target).next().after('<div class="loaders-wrapper"><div class="loader-box type2"><img src="https://usabilidade.gov.pt/documents/20142/33326/loader2.gif/70713b8a-3c45-ad02-c783-9272e2e56206?t=1541159384771"/><p>a carregar</p></div></div>')
+									
+												/*setTimeout(() => {
+													jQuery(target).next().next().empty()
+													let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+													jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+													jQuery(target).next().next().get(0).appendChild(span.get(0))
+													target.className += " pure-button-disabled"
+													jQuery(target).next().get(0).className += " pure-button-disabled"
+													setTimeout(() => {
+														jQuery('#layout_10').get(0).style.display = "none"
+														jQuery(target).removeClass("pure-button-disabled")
+														jQuery(target).next().removeClass("pure-button-disabled")
+														jQuery(target).next().next().empty()
+														jQuery('#layout_10').after('<li class="lfr-nav-item" id="layout_11"><a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').get(0).style.display=\'inline-block\';jQuery(\'#submenu\').get(0).style.display=\'none\';jQuery(\'#layout_11\').get(0).style.display=\'none\'">logout</a><div class="sub-menu" style="width:600%;left:-80%"></div></li>')
+														loadprofile()
+														/*btns.forEach((btn)=>{
+															btn.classList.remove('pure-button-disabled')
+														});
+														submenu.querySelector('#login-msg').innerHTML = '';*\/
+														//document.querySelector('#submenu').style.display = "none"
+														//window.wrap = jQuery('<div class="sub-menu">').append(submenu) //rebind shroot to #submenu, but causes flicker
+														//jQuery('#layout_10 > a').remove()
+														//jQuery('#submenu').get(0).style.display = "none"
+														//jQuery(target).parent().html("")
+														//target.parentNode.innerHTML = ""
+														//target.parentNode.innerHTML = submenu.innerHTML
+														//jQuery(target).parent().html(submenu.innerHTML)
+														//jQuery('#layout_10').removeClass('dropdown').append('<a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').append(anchor)">logout</a>')
+														//jQuery(submenu).wrap(\'<div class='+"sub-menu"+'>\')
+														//jQuery(\'#submenu\').get(0).style.display = \'block\'
+														//jQuery(\'#layout_10\').empty().append(anchor,wrap)
+													}, 1000)
+													//jQuery(target).next().get(0).appendChild(jQuery(`<span style='color:green'>Sucesso!<i style="content: \'\\f00c\';">&nbsp;</i></span>`).get(0)) 
+												}, 3000)*/
+									
+												userbase.signIn({ username, password, rememberMe: 'none' })
+												.then((user) => {
+													jQuery(target).next().next().empty()
+													let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+													jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+													jQuery(target).next().next().get(0).appendChild(span.get(0))
+													target.className += " pure-button-disabled"
+													jQuery(target).next().get(0).className += " pure-button-disabled"
+													setTimeout(() => {
+														jQuery('#layout_10').get(0).style.display = "none"
+														jQuery(target).removeClass("pure-button-disabled")
+														jQuery(target).next().removeClass("pure-button-disabled")
+														jQuery(target).next().next().empty()
+														jQuery('#layout_10').after('<li class="lfr-nav-item" id="layout_11"><a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').get(0).style.display=\'inline-block\';jQuery(\'#submenu\').get(0).style.display=\'none\';jQuery(\'#layout_11\').get(0).style.display=\'none\';session={}">logout</a><div class="sub-menu" style="width:600%;left:-80%"></div></li>')
+														loadprofile()
+													}, 1000)
+													session = user
+												})
+												.catch((e) => jQuery(target).next().next().get(0).innerHTML = `<span style='color:red'<i class="icon-remove">&nbsp;</i>${e}</span>`)
+											}
+											function loadprofile(){
+												let shprofile = document.querySelector('#layout_11 > .sub-menu').attachShadow({mode:'open'});
+												shprofile.appendChild(document.querySelector('#tmpl_profile').content.cloneNode(true));
+											}
+											//document.querySelector('#myBtn').onclick = onregis;
+										</script>
+										<form class="pure-form pure-form-stacked" id="signin-form">
+											<fieldset>
+												<legend>Contas de Utilizador</legend>
+												<label for="stacked-email">Email</label>
+												<input type="email" id="stacked-email" placeholder="Email" />
+												<span class="pure-form-message">Este campo é obrigatório</span>
+												<label for="stacked-password">Password</label>
+												<input type="password" id="stacked-password" placeholder="Password" /> 
+											</fieldset>
+										</form>
+										<button type="submit" class="pure-button pure-button-primary" onclick="onlog(event)">Entrar</button> ou
+										<button id="myBtn" class="pure-button pure-button-primary" onclick="onregis(event)">Registar</button>
+										<div id="login-msg"></div>
+									</template>
+									
+									<template id="tmpl_profile">
+										<link href="https://cdn.rawgit.com/doximity/vital/v2.2.1/dist/css/vital.min.css" rel="stylesheet">
+									
+										<div class="row"><div class="section"><h2 class="center">Account</h2><hr class="small"><div class="col-1-4"><ul class="bordered-list"><li><a href="#" class="here">Profile</a></li><li><a href="#">Subscription</a></li><li><a href="#">Payment</a></li></ul></div><div class="col-3-4 bg-white padding no-first-last"><h2>Richard Hendricks<img src="../images/avatar-a245e1bb.png" class="float-right" alt="Avatar" width="15%"></h2><ul><li><small class="gray-light">Email</small><br><span>richard@piedpiper.com</span></li><li><small class="gray-light">Handle</small><br><span>@rHendricks</span></li><li><small class="gray-light">Description</small><br><span>Middle-out compression done right.</span></li></ul><p><small class="gray-light">About</small><br>Richard is the CEO (Chief Executive Officer) of Ronify, a company he founded and then was fired from. Isn’t that weird? Although he left four credits short of graduation, he attended Stanford, where none of his computer science classes mentioned the possibility of having an innovative software firm you created ripped from you by soulless bean counters.</p><p><a href="#" class="btn red">Edit Profile</a></p></div><div class="clear"></div></div></div>
+									</template>
+									
+									<template id="tuical">
+										<link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+										<link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+										<link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+									
+										<script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+										<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+										<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+										<script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+									
+										<div id="calendar" style="height: 800px;"></div>
+									
+										<script>
+											let Calendar = tui.Calendar;
+									
+											var calendar = new Calendar('#calendar', {
+												defaultView: 'month',
+												taskView: true,
+												template: {
+													monthDayname: function(dayname) {
+														return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
+													}
+												}
+											});
+										</script>
+									</template>
+									
+									<template id="fullcal">
+										<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
+										<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js'></script>
+										<script>
+									
+										  document.addEventListener('DOMContentLoaded', function() {
+											var calendarEl = document.getElementById('calendar');
+											var calendar = new FullCalendar.Calendar(calendarEl, {
+											  initialView: 'dayGridMonth'
+											});
+											calendar.render();
+										  });
+									
+										</script>
+										<div id='calendar'></div>
+									</template>
+									<!--end templates-->
+									<!--<div class="sub-menu">
+										<div id="login">
+											<label for="user">Nome</label>
+											<input type="text" value="" placeholder="Insira o seu username" name="user" />
+											<div>
+												<input type="radio" id="huey" name="drone" value="sqlite"
+													   checked>
+												<label for="huey">SQLite</label>
+												<input type="radio" id="dewey" name="drone" value="excel">
+												<label for="dewey">Excel</label>
+												<input type="radio" id="" name="drone" value="sso" disabled>
+												<label for="dewey">SSO</label>
+											  </div>
+											  
+											  <div>
+											  </div>
+											<button onclick=qsolver()>ok</button>
+										</div>
+										<div id="logout"></div>
+									</div>-->
+									<script>
+										function xls() {
+											var url = "usersdb.xlsx";
+
+											/* set up async GET request */
+											var req = new XMLHttpRequest();
+											req.open("GET", url, true);
+											req.responseType = "arraybuffer";
+
+											req.onload = function(e) {
+												var workbook = XLSX.read(req.response);
+
+												var first_sheet_name = workbook.SheetNames[0];
+												var address_of_cell = 'B2';
+
+												/* Get worksheet */
+												var worksheet = workbook.Sheets[first_sheet_name];
+
+												/* Find desired cell */
+												var desired_cell = worksheet[address_of_cell];
+												var A2 = worksheet['A2'];
+
+												/* Get the value */
+												//var desired_value = (desired_cell ? desired_cell.v : undefined);
+
+												let connected = false;
+
+												if(desired_cell && desired_cell.v === document.querySelector('#login > input').value && !connected){
+														connected = true;
+														document.querySelector('#login').style.display = "none";
+														let p = document.createElement('p');
+														p.innerText = `Parabéns, está agora conectado como ${desired_cell.v} com id ${A2.v}`;
+														let button = document.createElement('button');
+														button.innerText = "Logout";
+														button.onclick = function(){
+															document.querySelector('#login').style.display = "block";
+															document.querySelector('#logout').style.display = "none";
+															document.querySelector('#login > input').value = "";
+															connected = false;
+														}
+														document.querySelector('#logout').innerHTML = "";
+														document.querySelector('#logout').prepend(p, button);
+												}
+													else if(connected) {
+														document.querySelector('#login').style.display = "none";
+														let p = document.createElement('p');
+														p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+														let button = document.createElement('button');
+														button.innerText = "Logout";
+														button.onclick = function(){
+															document.querySelector('#login').style.display = "block";
+															document.querySelector('#logout').style.display = "none";
+															document.querySelector('#login > input').value = "";
+															result = [];
+															connected = false;
+														}
+														document.querySelector('#logout').innerHTML = "";
+														document.querySelector('#logout').prepend(p, button);
+													} 
+													else if (document.querySelector('#login > input').value === "") {
+														document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+														document.querySelector('#logout').style.display = "block";
+													} else {
+														document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+														document.querySelector('#logout').style.display = "block";
+														document.querySelector('#login > input').value = "";
+													}
+											}
+
+											req.send();
+										}
+										function qsolver (ev) {
+											const rbs = document.querySelectorAll('input[type=radio][name=drone]');
+											for (const rb of rbs) {
+												if (rb.checked && rb.value === "excel") {
+													xls();
+													return;
+												}
+											}
+											//danger! sanitize user input before commit query
+											let result = window.query(document.querySelector('#login > input').value), connected = false;
+											result.then(resp => {
+												if (resp.length > 0 && !connected){
+													connected = true;
+													document.querySelector('#login').style.display = "none";
+													let p = document.createElement('p');
+													p.innerText = `Parabéns, está agora conectado como ${resp[0].name} com id ${resp[0].id}`;
+													let button = document.createElement('button');
+													button.innerText = "Logout";
+													button.onclick = function(){
+														document.querySelector('#login').style.display = "block";
+														document.querySelector('#logout').style.display = "none";
+														document.querySelector('#login > input').value = "";
+														result = [];
+														connected = false;
+													}
+													document.querySelector('#logout').innerHTML = "";
+													document.querySelector('#logout').prepend(p, button);
+												}
+												else if(connected) {
+													document.querySelector('#login').style.display = "none";
+													let p = document.createElement('p');
+													p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+													let button = document.createElement('button');
+													button.innerText = "Logout";
+													button.onclick = function(){
+														document.querySelector('#login').style.display = "block";
+														document.querySelector('#logout').style.display = "none";
+														document.querySelector('#login > input').value = "";
+														result = [];
+														connected = false;
+													}
+													document.querySelector('#logout').innerHTML = "";
+													document.querySelector('#logout').prepend(p, button);
+												} 
+												else if (document.querySelector('#login > input').value === "") {
+													document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+												} else {
+													document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+													document.querySelector('#logout').style.display = "block";
+													document.querySelector('#login > input').value = "";
+												}
+											}).catch((err)=>{console.log(err);});
+											
+										}
+									</script>
+								</li>
+								<li class="lfr-nav-item dropdown" id="layout_2"> 
+									<a class="dropdown-toggle" href="javascript:void(0);"><span>Mais<b class="icon-caret-down"></b></span></a> 
+									<ul class="sub-menu"> 
+										<li class="lfr-nav-item" id="layout_3">
+											<a href="https://bibliotecacolos.wixsite.com/website" target="_blank">Biblioteca</a>
+										</li> 
+										<li class="lfr-nav-item" id="layout_4">
+											<a href="horarios.html">Horário Lectivo</a>
+										</li>
+										<li class="lfr-nav-item" id="layout_5">
+											<a href="horario.html">Horários Atendimento e Serviços</a> 
+										</li>
+										<li class="lfr-nav-item" id="layout_7">
+											<a href="https://aecolos.github.io/goodmira/" target="_blank">Goodmira</a> 
+										</li>
+										<!--<li class="lfr-nav-item" id="layout_6">
+											<a href="https://github.com/aecolos/site/wiki" target="_blank">Wiki</a>
+										</li>-->
+									</ul>
+								</li>
+								<li class="search-icon">
+									<i class="icone-search">&nbsp;</i>
+								</li> 
+								<script>
+									let docs = [{
+										"id": document.documentURI,
+										"txt": document.documentElement.innerText
+									}];
+									let idx = lunr(function () {
+										this.ref('id');
+										this.field('txt');
+
+										docs.forEach(function (doc) {
+											this.add(doc)
+										}, this)
+									});
+									document.querySelector('.icon-angle-right').addEventListener('click', function (evt){
+										//idx.search(document.querySelector('.search-box input').value);
+									});
+								</script>
+							</ul> 
+						</div> 
+					</nav> 
+				</div>
+			</header>
+		</div>
+			<div id="content">
+				<div class="top-banner">
+				    <div class="initialTopBanner">  
+				    	<div class="scrolldown">
+							<img alt="Ver Mais Scroll Image" src="./images/scrolldown.png" />
+						</div>      
+				        <ul id="homepage-slider">				        	
+							<li>
+								<div class="img" style="background-image: url('https://static.wixstatic.com/media/5d46ae_ae2b73804e404859a4ef960f0d8a243d~mv2_d_3920_2204_s_2.jpg/v1/fill/w_976,h_548,al_c,q_85,usm_0.66_1.00_0.01/5d46ae_ae2b73804e404859a4ef960f0d8a243d~mv2_d_3920_2204_s_2.jpg');"></div><!--https://static.wixstatic.com/media/5d46ae_034cf8880df147cd924627a48f4cec2b~mv2.jpg-->
+								<div class="black-home-overlay"></div>						
+								<div class="text-area">
+									<h1>OFICINA RE-TRAPOS</h1>
+									<h3></h3>						            
+						            <div class="description">
+						            	<!--<p>TÍTULO DE APOIO PARA O BOTÃO</p>--><div class="verMaisHomeBtn"><a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_103c925547364cbc9e19a807d5e2d2a3.pdf" target="_blank">CONSULTAR</a></div>
+						            </div>    	
+						        </div>
+					        </li>
+					        <li>
+								<div class="img" style="background-image: url('https://static.wixstatic.com/media/5d46ae_a897b68bc34e4c9e8221a18a04852a79~mv2_d_3920_2204_s_2.jpg/v1/fill/w_976,h_548,al_c,q_85,usm_0.66_1.00_0.01/5d46ae_a897b68bc34e4c9e8221a18a04852a79~mv2_d_3920_2204_s_2.jpg');"></div>
+								<div class="black-home-overlay"></div>						
+								<div class="text-area">
+									<h1>EMENTAS</h1>
+									<h3>Ementa Escolar e Vegetariana</h3>						            
+						            <div class="description">
+										<p>EMENTA ESCOLAR</p><div class="verMaisHomeBtn"><a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_17845e6611644e2abb5be1c621b17f31.xls?dn=Ementa%201%C2%BAperiodo%20(1).xls" target="_blank">VER</a></div><p style="height:27px;"></p>
+										<p>EMENTA VEGETARIANA</p><div class="verMaisHomeBtn"><a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_f9a30926c7464066b9ad25cfdacdfd86.xlsx?dn=Ementa%20vegetariana%201%C2%BAperiodo%20(1).xlsx" target="_blank">VER</a></div>
+									</div>   	
+						        </div>
+					        </li>
+				        </ul>
+				    </div>
+				</div>
+				<div class="block-wrapper grey"> 
+					<div> 
+						<h2> AGRUPAMENTO DE ESCOLAS DE COLOS </h2> 
+						<div class="p1"> Bem-vindo ao site do Agrupamento Vertical das Escolas de Colos, Odemira </div> <br> 
+						<div class="p1"> Instituição pública ao serviço da comunidade local vocacionada para o ensino com componentes lectivas do pré-escolar e 1º-3º ciclos  </div> 
+						<!--<button class="button1">CLICAR AQUI</button>--> 
+					</div> 
+				</div>
+				<!--<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
+				<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js'></script>
+				<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/pt.js'></script>
+				<script>
+
+					document.addEventListener('DOMContentLoaded', function() {
+						var calendarEl = document.getElementById('calendar');
+						var calendar = new FullCalendar.Calendar(calendarEl, {
+							initialView: 'dayGridMonth',
+							locale: 'pt',
+							customButtons: {
+								btnpdf: {
+									text: 'PDF',
+									click: function() {
+										let anchor = document.createElement('a');
+										anchor.href = "https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_fc20f16a314b474ea36c77d7fc534537.pdf";
+										anchor.setAttribute('target', '_blank');
+										anchor.click();
+									}
+								},
+								imgcal: {
+									text: '->',
+									//icon: 'icon-external-link',
+									click: function() {
+										let anchor = document.createElement('a');
+										anchor.href = "https://agvcolos.wixsite.com/agvcolos/calendario-escolar";
+										anchor.setAttribute('target', '_blank');
+										anchor.click();
+									}
+								}
+							},
+							headerToolbar: {
+								left: 'btnpdf prev,next today',
+								center: 'title',
+								right: 'dayGridMonth,timeGridWeek,timeGridDay imgcal'
+							},
+							events: [{
+								title: 'Início Lectivo',
+								start: '2021-09-13',
+								backgroundColor: 'blue'
+							},
+							{
+								title: 'Avaliações Intercalares',
+								start: '2021-11-18',
+								end: '2021-11-19',
+								backgroundColor: 'brown'
+							},
+							{
+								title: 'Pausa de Natal',
+								start: '2021-12-22',
+								end: '2021-12-31',
+								backgroundColor: 'green'
+							},
+							{
+								title: 'Covid19',
+								start: '2022-01-03',
+								end: '2022-01-07',
+								backgroundColor: 'green'
+							},
+							{
+								title: 'Interrupção Entre-Semestres',
+								start: '2022-02-01',
+								end: '2022-02-04',
+								backgroundColor: 'brown'
+							},
+							{
+								title: 'Pausa',
+								start: '2022-02-28',
+								end: '2022-03-02',
+								backgroundColor: 'green'
+							},
+							{
+								title: 'Avaliações Intercalares',
+								start: '2022-04-07',
+								end: '2022-04-08',
+								backgroundColor: 'brown'
+							},
+							{
+								title: 'Pausa Pascal',
+								start: '2022-04-11',
+								end: '2022-04-18',
+								backgroundColor: 'green'
+							},
+							{
+								title: 'Final Lectivo 9º Ano',
+								start: '2022-06-07',
+								backgroundColor: 'blue'
+							},
+							{
+								title: 'Final Lectivo 5º, 6º, 7º e 8º Anos',
+								start: '2022-06-15',
+								backgroundColor: 'blue'
+							},
+							{
+								title: 'Final Lectivo Pré-Escolar e 1º Ciclo',
+								start: '2022-06-30',
+								backgroundColor: 'blue'
+							},
+							{
+								title: 'Feriado',
+								start: '2021-09-08',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2021-10-05',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2021-12-01',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2021-12-08',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2021-12-25',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-01-01',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-04-15',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-04-17',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-04-25',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-05-01',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-06-10',
+								backgroundColor: 'red'
+							},
+							{
+								title: 'Feriado',
+								start: '2022-06-16',
+								backgroundColor: 'red'
+							}]
+						});
+						calendar.render();
+					});
+
+				</script>
+				<style>
+					.fc .fc-button-primary {
+						background-color: #2C3E50 !important;
+						background-color: var(--fc-button-bg-color,#2C3E50) !important;
+						border-color: #2C3E50 !important;
+						border-color: var(--fc-button-border-color,#2C3E50) !important;
+					}
+					.fc-icon-icon-external-link {
+						display: inline;
+						width: auto;
+						height: auto;
+						line-height: normal;
+						vertical-align: baseline;
+						background-image: none;
+						background-position: 0% 0%;
+						background-repeat: repeat;
+						margin-top: 0;
+						font-family: FontAwesome;
+						font-weight: normal;
+						font-style: normal;
+						text-decoration: inherit;
+					}
+					.fc-icon-icon-external-link::before {
+						content: "\f08e";
+						text-decoration: inherit;
+						display: inline-block;
+					}
+				</style>
+				<div class="block-wrapper">
+				    <div class="row-fluid">
+				        <div class="span12">
+							<h2>CALENDÁRIO ESCOLAR</h2>
+							<div id="calendar"></div>
+						</div>
+					</div>
+				</div>-->
+				<div id="news_block"></div>
+				<script>
+					$('#news_block').load('newsblock.html');
+				</script>
+				<!--<div class="block-wrapper news-wrapper container-fluid">
+				    <div class="row-fluid">
+				        <div class="span12">
+				            <h2>NOTÍCIAS</h2> </div>
+				    </div>
+				    <div class="row-fluid">
+				        <div class="span4">
+				            <a href="https://visao.sapo.pt/visaojunior/miudos-a-votos/2020-03-13-uma-viuva-com-muito-ritmo/" target="_blank">
+								<div class="image-wrapper">
+								<div class="blue-overlay"></div>
+								<img alt="Noticia 1 Foto" src="./images/viuva.png"> </div>
+								<div class="date-wrapper">
+									<i class="icon-calendar"></i><span>20 Março 2020</span>
+								</div>
+								<div class="lead3">Uma Viúva Com Muito Ritmo</div>
+								<div class="p2">" O livro a "Viúva e o Papagaio", escrito por Virgínia Woolf, tem muitos leitores em Colos , uma terra do concelho de Odemira, no Alentejo.
+									Não é para menos, além da história ser divertida , os alunos dos 5ºB, da Escola Aviador Brito Paes esmeraram-se na campanha eleitoral dos "Miúdos a votos"e fizeram um vídeo/canção cheio de ritmo, swing e energia."
+								</div>
+							</a>
+				        </div>
+				        <div class="span4">
+				            <a href="javascript:void(0);">
+								<div class="image-wrapper">
+									<div class="blue-overlay"></div>
+									<img alt="Noticia 2 Foto" src="https://static.wixstatic.com/media/5d46ae_ea5eafa430874879b18d73e39bf02ad5~mv2.jpg/v1/fill/w_537,h_280,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_ea5eafa430874879b18d73e39bf02ad5~mv2.jpg">
+								</div>
+								<div class="date-wrapper">
+									<i class="icon-calendar"></i><span>06 Março 2020</span>
+								</div>
+								<div class="lead3">Jogos Matemáticos</div>
+								<div class="p2">Decorreu no passado dia 4 de março o Campeonato Interno dos Jogos Matemáticos onde se disputaram os 1º lugares nos jogos Rastros e Produto, com o objetivo de motivar os alunos para a aprendizagem da matemática, experimentado o divertimento e o prazer de pensar. 
+									Participaram cerca de 25 alunos do 5º ao 9º ano.  Liliana Sabino (6ºA) e Maria Clara (9ºA) obtiveram apuramento no jogo Rastros assim como Mariana Justino (6ºA) e Carla Carregueira (9ºB)  no jogo Produto. Estas alunas participarão no 16º Campeonato Nacional que decorrerá em Aveiro. Parabéns às vencedoras e a todos os participantes!</div>
+							</a>
+				        </div>
+				        <div class="span4">
+				            <a href="javascript:void(0);">
+								<div class="image-wrapper">
+									<div class="blue-overlay"></div>
+									<img alt="Noticia 3 Foto" src="https://static.wixstatic.com/media/5d46ae_bb6618eeb513477281babc0adcee6304~mv2.jpg/v1/fill/w_537,h_280,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_bb6618eeb513477281babc0adcee6304~mv2.jpg">
+								</div>
+								<div class="date-wrapper">
+									<i class="icon-calendar"></i><span>06 Março 2020</span>
+								</div>
+								<div class="lead3">Semana da Leitura</div>
+								<div class="p2">A Biblioteca Escolar, aliou-se à comemoração da Semana da Leitura,  que decorre de 9 a 13 de março  (projeto desenvolvido a nível nacional pela Rede de Bibliotecas Escolares).
+									Para celebrar a leitura, o livro e o leitor, serão dinamizadas ao longo desta semana atividades diversas de incentivo à leitura, com o objetivo de envolver toda a comunidade escolar</div>
+							</a>
+				        </div>
+				    </div>
+				    <!-\-<div class="row-fluid">
+				        <div class="pages-wrapper">
+				            <a href="javascript:void(0);"> <i class="icon-long-arrow-left"></i> </a>
+				            <a href="javascript:void(0);" style="margin-left: 30px;"> <i class="icon-long-arrow-right"></i> </a>
+				        </div>
+				    </div>-\->
+				    <div class="row-fluid" style="margin: 35px 0 45px 0;">
+				        <div class="span12"> <a href="news.html" class="button button1">Ir para notícias</a> </div>
+				    </div>
+				</div>-->
+				<!--<div class="block-wrapper lighter-grey variations-wrapper">
+				    <div class="container-fluid">
+				        <div class="row-fluid">
+				            <div class="span12">
+				                <h2>VARIAÇÕES DO TEMPLATE</h2>
+				                <div class="p1"> Aqui pode encontrar 3 exemplos de aplicação prática do template Liferay </div>
+				            </div>
+				        </div>
+				        <div class="row-fluid">
+				            <div class="span4"> <i class="icon-beaker"></i>
+				                <div class="lead2">Template 1</div>
+				                <div class="p2">Template de exemplo para aplicação em sítios mais orientados para a prestação de serviços.</div> <a href="./images/homepage_v2.jpg" target="_blank" class="button button1">VER IMAGEM</a> </div>
+				            <div class="span4"> <i class="icon-pushpin"></i>
+				                <div class="lead2">Template 2</div>
+				                <div class="p2">Template de exemplo para aplicação em sítios com alguma densidade de informação.</div> <a href="./images/homepage_v3.jpg" target="_blank" class="button button1">VER IMAGEM</a> </div>
+				            <div class="span4"> <i class="icon-eye-close"></i>
+				                <div class="lead2">Template 3</div>
+				                <div class="p2">Template de exemplo para aplicação a sítios específicos a eventos, iniciativas ou produtos.</div> <a href="./images/homepage_v3_sembanner.jpg" target="_blank" class="button button1">VER IMAGEM</a> </div>
+				        </div>
+				    </div>
+				</div>-->
+				<!--<script>
+					var map;
+					function initMap(){
+						map = new google.maps.Map(document.getElementById("map"),{
+							center:{
+								lat:38.722291,lng:-9.139302
+							},
+							zoom:8,
+							scrollwheel:false
+						})
+					};
+				</script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAa4iCR6dph3gJkFfLsGMLKNHFeTevEI9w&callback=initMap" async defer></script>-->
+				<div id="contactFormPosition" class="block-wrapper blue contact-wrapper">
+				    <div class="container-fluid">
+				        <div class="row-fluid">
+				            <div class="span12">
+				                <h2>LOCALIZAÇÃO</h2>
+				                <!--<div class="p1"> Aqui deve estar a localização e morada do organismo. Pode também disponibilizar um formulário que permita ao cidadão contactar o organismo. </div>-->
+				            </div>
+						</div>
+				        <div class="row-fluid">
+				            <div class="span6"> <i class="icon-map-marker"></i>
+				                <div class="address">
+				                    <h6>Escola Básica Aviador Brito Paes, Colos - Odemira</h6>
+				                    <p>Largo Brito Paes</p>
+				                    <p>7630 - 329 Colos</p>
+				                    <br>
+				                    <p>Email: <a href="mailto:comunicacao@aecolos.pt">comunicacao@aecolos.pt</a>
+				                    </p>
+									<p>Telefone: 283650000</p>
+									<br>
+									<a href="https://www.openstreetmap.org/directions?engine=fossgis_osrm_car&route=38.7078%2C-9.1366%3B37.7346%2C-8.4609#map=8/38.232/-8.778" target="_blank"><button class="button1 button-icon" type="button" style="margin:0"> <i class="icon-location-arrow"></i>Como chegar </button></a>
+				                </div>
+							</div>
+							<div id="map" class="span6">
+								<iframe width="100%" height="343" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-8.580665588378908%2C37.67267961312217%2C-8.340339660644533%2C37.79350762410675&amp;layer=mapnik&amp;marker=37.73298250331026%2C-8.460502624511719" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=37.7330&amp;mlon=-8.4605#map=12/37.7331/-8.4605">View Larger Map</a></small>
+							</div>
+				            <!--<div class="span6 form-wrapper">
+				            	<form id="contactForm">
+									<div class="p2">
+										* Campos de preenchimento obrigat&oacute;rio
+									</div>
+									<div>
+										<label class="animateInput">
+									        <input path="nome" type="text" placeholder="Nome*" />
+											<span>Nome*</span>
+									    </label>
+								    </div>
+								    <div>
+									    <label class="animateInput">
+									       <input path="email" type="text" placeholder="Email*" />
+									       <span>Email*</span>
+									    </label>
+								    </div>
+								    <div>
+									    <label class="animateInput">
+											<input path="assunto" type="text" placeholder="Assunto*"/>
+											<span>Assunto*</span>
+										</label>
+									</div>
+									<div>
+								       <label class="animateInput">
+								           <textarea path="mensagem" placeholder="Mensagem*"/></textarea>
+								           <span>Mensagem*</span>
+								       </label>
+								    </div>
+									<div class="g-recaptcha" data-sitekey="6LerIBMUAAAAADHOcDuf1mZ2J4O1DoxCIp1iVm0P">
+									</div>					
+									<div class="button-wrapper">
+										<button class="button1" id="clean">Limpar</button>
+										<button class="button1">Enviar</button>
+									</div>
+								</form>
+				            </div>
+				        </div>
+				        <div class="row-fluid">
+				            <div class="span12">
+				                <div class="p1"> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tinci lorem ipsum.
+				                    <br>
+				                    <br> Aliquam imperdiet gravida egestas. Nam luctus, ligula ac ultricies laoreet, enim tortor aliquet ex, id fringilla est lectus vitae tellus. Vestibulum quis mattis sem. Integer eu aliquam sapien. Etiam dignissim non purus vitae volutpat.
+				                    <br>
+				                    <br> Vestibulum feugiat orci quam, eu aliquam ligula <span>RHONCUS</span> at. 
+				                </div>
+				            </div>
+				        </div>-->
+				    </div>
+				</div>
+				<!--<div id="newsletterWrapper">
+					<div class="newsletter-wrapper">
+						<div class="newsletter-box">
+							<i class="icon-envelope-alt">&nbsp;</i>
+							<span>Newsletter</span> 
+							<div class="input-wrapper">
+								<input type="email" id="emailNewsletter" placeholder="Insira o seu email..."> <i class="icon-angle-right">&nbsp;</i>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<footer id="footer">
+				    <div class="social-media-wrapper" style="margin-bottom:0">
+				        <!--<ul>
+				            <li>
+				                <a href="http://www.facebook.com/pages/Liferay/45119213107" target="_blank"> <i class="icone-facebook"> </i> </a>
+				            </li>
+				            <li>
+				                <a href="https://www.linkedin.com/company/liferay-inc-" target="_blank"> <i class="icone-linkedin"> </i> </a>
+				            </li>
+				            <li>
+				                <a href="https://twitter.com/liferay" target="_blank"> <i class="icone-twitter"> </i> </a>
+				            </li>
+						</ul>-->
+						<div id="newsletterWrapper">
+							<div class="newsletter-wrapper" style="text-align: center">
+								<div class="newsletter-box">
+									<a href="./newsletter.html">
+										<i class="icon-envelope-alt">&nbsp;</i>
+										<span>Newsletter</span>
+									</a> 
+								</div>
+							</div>
+						</div>
+				    </div>
+				    <!--<div id="sitemap">
+				        <div class="nav-menu">
+				            <div class="container-fluid">
+				                <div class="row-fluid">
+				                    <div class="span2 offset1"><a href="./">Início</a></div>
+				                    <div class="span2"> <a href="javascript:void(0);">Página Interior</a>
+				                        <ul class="layouts level-1">
+				                            <li><a href="./link4">Submenu 1</a> </li>
+				                        </ul>
+				                    </div>
+				                    <div class="span2"><a href="./pagina-de-texto">Página de Texto</a></div>
+				                    <div class="span2"><a href="./formulario">Formulário</a></div>
+				                    <div class="span2"><a href="./noticias">Notícias</a></div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				    <div id="sitemapSubMenu">
+				        <div class="container-fluid">
+				            <div class="row-fluid">
+				                <div class="span3">&nbsp;</div>
+				                <div class="span1"><a href="javascript:void(0);">PRÉMIOS</a>
+				                </div>
+				                <div class="span2"><a href="javascript:void(0);">OUTRO LINK</a>
+				                </div>
+				                <div class="span2"><a href="javascript:void(0);">POLÍTICA DE PRIVACIDADE</a>
+				                </div>
+				                <div class="span2"><a href="./contactos">CONTACTOS</a>
+				                </div>
+				                <div class="span2">&nbsp;</div>
+				            </div>
+				        </div>
+				    </div>-->
+				    <div id="copyright">
+				        <div class="container-fluid">
+				            <div class="row-fluid footer-images-wrapper">
+				                <div class="span2"> <a href="https://aecolos.edu.gov.pt/moodle/" target="_blank"><img alt="Moodle" src="https://static.wixstatic.com/media/5d46ae_0f9df6003e684be4a33c0c8a7813aa57~mv2.jpg/v1/fill/w_82,h_60,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_0f9df6003e684be4a33c0c8a7813aa57~mv2.webp"></a> </div>
+				                <div class="span2"> <a href="https://inovar.aecolos.pt/inovaralunos/Inicial.wgx" target="_blank"><img alt="Inovar Alunos" src="https://static.wixstatic.com/media/5d46ae_3fed0dd6e7c448b492505b2ac65a7a92~mv2.jpg/v1/fill/w_205,h_68,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_3fed0dd6e7c448b492505b2ac65a7a92~mv2.webp"></a> </div>
+				                <div class="span2"> <a href="https://inovar.aecolos.pt/inovarpaa/Inicial.wgx" target="_blank"><img alt="Inovar PAA" src="https://static.wixstatic.com/media/5d46ae_a38d4a09b0644f9e8b6308432696da48~mv2.jpg/v1/fill/w_205,h_70,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_a38d4a09b0644f9e8b6308432696da48~mv2.webp"></a> </div>
+				                <div class="span2"> <a href="https://inovar.aecolos.pt/inovarconsulta/app/index.html#/login" target="_blank"><img alt="Inovar Consulta" src="https://static.wixstatic.com/media/5d46ae_753ed5f26eea40a5a6337f08afae7c07~mv2.jpg/v1/fill/w_210,h_60,al_c,lg_1,q_80/5d46ae_753ed5f26eea40a5a6337f08afae7c07~mv2.webp"></a> </div>
+				                <div class="span2"> <a href="https://inovar.aecolos.pt/PortalUnicard" target="_blank"><img alt="Unicard" src="https://static.wixstatic.com/media/5d46ae_7d6968238a7e4129a4c6bc33300b50fd~mv2.png/v1/fill/w_199,h_89,al_c,q_85,usm_0.66_1.00_0.01/Unicard.webp"></a> </div>
+				            </div>
+				            <!--footer images -->
+				            <div class="row-fluid">
+				                <div class="span12">
+				                    <p>@2021 <strong>AEColos - Agrupamento de Escolas de Colos</strong>
+				                    </p>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</footer>
+				<!--<div class="privacy-info-message">
+				    <div class="layout ">
+				        <div class="layout-content ">
+				            <div class="column w100 column-first column-last">
+				                <div class="column-content column-content-first column-content-last">
+				                    <div class="text-private">
+				                        <p>Template recomendado para utilização em sítios de organismos públicos é <a href="http://usabilidade.gov.pt/" target="_blank">USABILIDADE.GOV.PT</a>
+				                        </p>
+				                    </div>
+				                    <div class="btnWrapper">
+				                        <button class="btn btn btn-primary" type="button">OK</button>
+				                    </div>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>-->
+			</div>
+		</div> 
+		<script type="text/javascript" src="./js/jquery.bxslider.min.js"></script>
+		<script type="text/javascript" src="./js/select2.full.min.js"></script>
+		<script type="text/javascript" src="./js/main.js"></script>		
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<script>
+			//page.base('/prof');
+			page('/prof/:prof', function(ctx){
+				if(ctx.params.prof === 'aecolos')
+					page('/prof');
+			});
+			page();
+		</script>
+		<script>
+			/*let templData;
+			fetch("./tmpls.html").then(function(resp){
+				resp.text().then(function(txt){
+					tmplData = txt;
+				});
+			});*/
+			//let shroot = document.querySelector('#submenu').attachShadow({mode:'open'});
+			//let shcal = document.querySelector('#calwrap').attachShadow({mode:'open'});
+			//shroot.appendChild(document.querySelector('#tmpl_logform').content.cloneNode(true));
+		</script>
+		<script type="text/javascript">
+			userbase.init({ appId: 'f98d4fda-0171-466a-80a5-aa23799653c9' })
+		</script>
+		<!-- CMS.js -->
+		<script src="./js/cms.js"></script>
+		<!-- Config -->
+		<script src="./js/config-cms.js"></script>
+	</body>
+</html>
