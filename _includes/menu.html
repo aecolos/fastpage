@@ -1,3 +1,70 @@
+<!--begin modal box-->
+<style>
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 50px;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    
+    /* Modal Content */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 0;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+    
+    /* The Close Button */
+    .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    </style>
+<div id="regis-modal" class="dialog-box-wrapper modal" style="display:none">
+    <div class="dialog-box modal-content">
+        <div class="close">
+            <i class="icon-remove-sign">&nbsp;</i>
+        </div>
+        <div class="dialog-header">
+            <i class="icone-icons">&nbsp;</i>
+            <h4>Registo de Novo Utilizador</h4>
+        </div>
+        <div class="dialog-body"></div>
+    </div>
+</div>
+<script>
+    document.querySelector('.close').onclick = () => {
+        document.querySelector('#regis-modal').style.display = 'none';
+    };
+</script>
+<!--end modal box-->
+<div class="toTop"><i class="icon-angle-up"></i></div>
+<div class="search-box">
+    <div>
+        <i class="icon-remove">&nbsp;</i>
+        <input placeholder="Pesquisar..." type="text" /> <i class="icon-angle-right">&nbsp;</i>
+    </div>
+</div>
+<div class="container-fluid" id="wrapper">
     <header id="banner"> 
         <div id="heading"> 
             <nav class="horizontal-menu type2">
@@ -19,7 +86,7 @@
                         <li class="lfr-nav-item" id="layout_0"> 
                             <a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_7d2459348158494782ff6ff4d8310373.pdf" target="_blank"><span>Covid</span></a> 
                         </li> 
-                        <li class="lfr-nav-item" id="layout_1"> 
+                        <li class="lfr-nav-item selected active" id="layout_1"> 
                             <a href="./"><span>Início</span></a> 
                         </li> 
                         <li class="lfr-nav-item dropdown" id="layout_2"> 
@@ -514,3 +581,4 @@
             </nav> 
         </div>
     </header>
+</div>
