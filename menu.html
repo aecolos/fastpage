@@ -1,0 +1,516 @@
+    <header id="banner"> 
+        <div id="heading"> 
+            <nav class="horizontal-menu type2">
+                <div> 
+                    <div class="lang-wrapper">
+                        <i class="icon-globe"></i> 
+                        <select id="selectLang"> 
+                            <option value="en">EN</option>
+                            <option value="pt">PT</option>
+                        </select>
+                    </div> 
+
+                    <a href="./"><img src="https://static.wixstatic.com/media/5d46ae_e8d8e27385624347bf722c6927969084~mv2.jpg/v1/fill/w_60,h_84,al_c,q_80,usm_0.66_1.00_0.01/5d46ae_e8d8e27385624347bf722c6927969084~mv2.webp" alt="AMA-Template" /></a>
+                    <i class="icone-burguer"></i> 
+
+                    <ul id="menulist"> 
+                        <!--empty li to overcome vertical-align bug-->
+                        <li class="lfr-nav-item" style="vertical-align:middle"></li>
+                        <li class="lfr-nav-item" id="layout_0"> 
+                            <a href="https://6c6ceda1-6b8d-42b2-bfc3-90984dd94c5a.filesusr.com/ugd/5d46ae_7d2459348158494782ff6ff4d8310373.pdf" target="_blank"><span>Covid</span></a> 
+                        </li> 
+                        <li class="lfr-nav-item" id="layout_1"> 
+                            <a href="./"><span>Início</span></a> 
+                        </li> 
+                        <li class="lfr-nav-item dropdown" id="layout_2"> 
+                            <a class="dropdown-toggle" href="javascript:void(0);"><span>Apoio<b class="icon-caret-down"></b></span></a> 
+                            <ul class="sub-menu"> 
+                                <li class="lfr-nav-item" id="layout_3">
+                                    <a href="https://github.com/aecolos/aecolos" target="_blank">Q&A Forum</a>
+                                </li> 
+                                <li class="lfr-nav-item" id="layout_4">
+                                    <a href="./prof" target="_blank">Blog</a>
+                                </li>
+                                <li class="lfr-nav-item" id="layout_5">
+                                    <a href="./readme-template" target="_blank">Recursos Educativos</a> 
+                                </li>
+                                <li class="lfr-nav-item" id="layout_6">
+                                    <a href="https://github.com/aecolos/site/wiki" target="_blank">Wiki</a>
+                                </li>
+                                <!--<li class="lfr-nav-item" id="layout_10">
+                                    <a href="https://app.stackbit.com/studio/61995921e0667c00c8bdea40/" target="_blank">Stackbit</a>
+                                </li>-->
+                                <li class="lfr-nav-item" id="layout_11">
+                                    <a href="https://bardeen-c8a44e-0000.netlify.app/" target="_blank">CMS</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="lfr-nav-item" id="layout_1"> 
+                            <a href="agrupamento.html"><span>Escola</span></a> 
+                        </li>
+                        <li class="lfr-nav-item" id="layout_1"> 
+                            <a href="orgaos.html"><span>Orgãos</span></a> 
+                        </li>
+                        <!--<li class="lfr-nav-item" id="layout_7"> 
+                            <a href="./pagina-de-texto"><span>Página Texto</span></a> 
+                        </li> 
+                        <li class="lfr-nav-item" id="layout_8">
+                            <a href="./formulario"><span>Formulário</span></a>
+                        </li>
+                        <li class="lfr-nav-item" id="layout_9">
+                            <a href="./noticias"><span>Notícias</span></a> 
+                        </li>-->
+                        <li class="lfr-nav-item dropdown" id="layout_10"> 
+                            <a class="dropdown-toggle" href="javascript:void(0);"><span>Acesso<b class="icon-caret-down"></b></span></a> 
+                            <div id="submenu" class="sub-menu">
+                                <!--<div class="form-wrapper">
+                                    <div class="row-fluid">
+                                        <div class="span9">
+                                            <label class="animateInput">
+                                                <input id="signup-username" type="text" required placeholder="Username">
+                                                <span>Nome*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span9">
+                                            <label class="animateInput">
+                                                <input id="signup-password" type="password" required placeholder="Password">
+                                                <span>Email*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="btnWrapper">
+                                        <button id="btnPrevious" class="button1">Sign</button>
+                                        <button id="btnNext" class="button">Register</button> 
+                                    </div>
+                                </div>-->
+                            </div>
+                            <!--init templates-->
+                            <template id="tmpl_regisform">
+                                <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+                                <form class="pure-form" id="signup-form" name="regis_form">
+                                    <fieldset>
+                                        <legend></legend>
+                                        <input id="signup-username" type="email" placeholder="Email" maxlength=32 />
+                                        <input id="signup-password" name="password" type="password" placeholder="Insira a password pretendida" minlength=8 maxlength=32 />
+                                        <input id="signup-password-confirm" name="password_confirm" type="password" placeholder="Repita a password inserida para confirmação" minlength=8 maxlength=32 />
+                                        <!--<label for="default-remember">
+                                            <input type="checkbox" id="default-remember" /> Remember me
+                                        </label>-->
+                                    </fieldset>
+                                </form>
+                                <button id="regbtn" class="pure-button pure-button-primary" onclick="handleSignUp(event)">Registar</button>
+                                <div id="signup-msg"></div>
+                                <script>
+                                    function handleSignUp(e) {
+                                        e.preventDefault()
+                            
+                                        if (e.target.className.includes('pure-button-disabled'))
+                                            return
+                                        
+                                        //e.target retargets on setTimeout
+                                        let target = e.target;
+                            
+                                        const username = jQuery(e.target).prev().find('input#signup-username').get(0).value
+                                        const password = jQuery(e.target).prev().find('input#signup-password').get(0).value
+                                        const passrepeat = jQuery(e.target).prev().find('input#signup-password-confirm').get(0).value
+                            
+                                        //native form validation
+                                        if(password === passrepeat){}
+                                        else {
+                                            const ipass = jQuery(e.target).prev().find('input#signup-password-confirm').get(0)
+                                            //const valid = ipass.validity
+                                            ipass.setCustomValidity('As passwords não coincidem')
+                                            return
+                                        }
+                            
+                                        //form validation with validate.js
+                                        var validator = new FormValidator('regis_form', [{
+                                            name: 'password',
+                                            rules: 'required'
+                                        }, {
+                                            name: 'password_confirm',
+                                            display: 'password confirmation',
+                                            rules: 'required|matches[password]'
+                                        }], function(errors, event) {
+                                            if (errors.length > 0) {
+                                                // Show the errors
+                                            }
+                                        });
+                            
+                                        jQuery(e.target).after('<div class="loaders-wrapper"><div class="loader-box type2"><img src="https://usabilidade.gov.pt/documents/20142/33326/loader2.gif/70713b8a-3c45-ad02-c783-9272e2e56206?t=1541159384771"/><p>a carregar</p></div></div>')
+                            
+                                        /*setTimeout(() => {
+                                            jQuery(target).next().remove()
+                                            let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+                                            jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+                                            jQuery(target).next().get(0).appendChild(span.get(0))
+                                            target.className += "pure-button-disabled"
+                                            //jQuery(target).next().get(0).appendChild(jQuery(`<span style='color:green'>Sucesso!<i style="content: \'\\f00c\';">&nbsp;</i></span>`).get(0)) 
+                                        }, 3000)*/
+                            
+                                        //todo: check if user already registered
+                            
+                                        userbase.signUp({ username, password, rememberMe: 'none' })
+                                        .then((user) => {jQuery(target).next().get(0).innerHTML = `<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i><style>#icok:before{content: "\\f00c";}</style></span>`;target.className += "pure-button-disabled"})
+                                        .catch((e) => {jQuery(target).next().get(0).innerHTML = `<span style='color:red'<i class="icon-remove">&nbsp;</i>${e}</span>`})
+                                    }
+                            
+                                    //document.getElementById('signup-form').addEventListener('submit', handleSignUp)
+                                    //document.getElementById('regbtn').addEventListener('click', handleSignUp)
+                                    //$('.dialog-body').on('click', handleSignUp)
+                                </script>
+                            </template>
+                            
+                            <template id="tmpl_logform">
+                                <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+                                <script>
+                                    let session
+                                    function onregis(ev) {
+                                        ev.preventDefault();
+                                        document.querySelector('#regis-modal').style.display = "block";
+                                        let shregis = document.querySelector('.dialog-body').attachShadow({mode:'open'});
+                                        shregis.appendChild(document.querySelector('#tmpl_regisform').content.cloneNode(true));
+                                    }
+                                    document.querySelector('.close-dialog').onclick = function(){
+                                        document.querySelector('#regis-modal').style.display = "none";
+                                    };
+                                    function onlog(e) {
+                                        e.preventDefault();
+                            
+                                        if (e.target.className.includes('pure-button-disabled'))
+                                            return
+                            
+                                            document.querySelector('#submenu').style.display = "block"
+                                        
+                                        //e.target retargets on setTimeout
+                                        let target = e.target
+                                        window.submenu = e.target.parentNode
+                                        window.anchor = jQuery('#layout_10 > a:first')
+                                        //console.log(submenu.querySelectorAll('button'))
+                                        window.btns = submenu.querySelectorAll('button')
+                                        //window.lay10 = document.querySelector('#tmpl_logform').content.cloneNode(true)
+                            
+                                        const username = jQuery(e.target).prev().find('input#stacked-email').get(0).value
+                                        const password = jQuery(e.target).prev().find('input#stacked-password').get(0).value
+                            
+                                        jQuery(e.target).next().after('<div class="loaders-wrapper"><div class="loader-box type2"><img src="https://usabilidade.gov.pt/documents/20142/33326/loader2.gif/70713b8a-3c45-ad02-c783-9272e2e56206?t=1541159384771"/><p>a carregar</p></div></div>')
+                            
+                                        /*setTimeout(() => {
+                                            jQuery(target).next().next().empty()
+                                            let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+                                            jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+                                            jQuery(target).next().next().get(0).appendChild(span.get(0))
+                                            target.className += " pure-button-disabled"
+                                            jQuery(target).next().get(0).className += " pure-button-disabled"
+                                            setTimeout(() => {
+                                                jQuery('#layout_10').get(0).style.display = "none"
+                                                jQuery(target).removeClass("pure-button-disabled")
+                                                jQuery(target).next().removeClass("pure-button-disabled")
+                                                jQuery(target).next().next().empty()
+                                                jQuery('#layout_10').after('<li class="lfr-nav-item" id="layout_11"><a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').get(0).style.display=\'inline-block\';jQuery(\'#submenu\').get(0).style.display=\'none\';jQuery(\'#layout_11\').get(0).style.display=\'none\'">logout</a><div class="sub-menu" style="width:600%;left:-80%"></div></li>')
+                                                loadprofile()
+                                                /*btns.forEach((btn)=>{
+                                                    btn.classList.remove('pure-button-disabled')
+                                                });
+                                                submenu.querySelector('#login-msg').innerHTML = '';*\/
+                                                //document.querySelector('#submenu').style.display = "none"
+                                                //window.wrap = jQuery('<div class="sub-menu">').append(submenu) //rebind shroot to #submenu, but causes flicker
+                                                //jQuery('#layout_10 > a').remove()
+                                                //jQuery('#submenu').get(0).style.display = "none"
+                                                //jQuery(target).parent().html("")
+                                                //target.parentNode.innerHTML = ""
+                                                //target.parentNode.innerHTML = submenu.innerHTML
+                                                //jQuery(target).parent().html(submenu.innerHTML)
+                                                //jQuery('#layout_10').removeClass('dropdown').append('<a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').append(anchor)">logout</a>')
+                                                //jQuery(submenu).wrap(\'<div class='+"sub-menu"+'>\')
+                                                //jQuery(\'#submenu\').get(0).style.display = \'block\'
+                                                //jQuery(\'#layout_10\').empty().append(anchor,wrap)
+                                            }, 1000)
+                                            //jQuery(target).next().get(0).appendChild(jQuery(`<span style='color:green'>Sucesso!<i style="content: \'\\f00c\';">&nbsp;</i></span>`).get(0)) 
+                                        }, 3000)*/
+                            
+                                        userbase.signIn({ username, password, rememberMe: 'none' })
+                                        .then((user) => {
+                                            jQuery(target).next().next().empty()
+                                            let span = jQuery(`<span style='color:green'>Sucesso!<i id="icok" style="font-family: FontAwesome;font-weight: normal;font-style: normal;text-decoration: inherit;">&nbsp;</i></span>`)
+                                            jQuery('<style>#icok:before{content: "\\f00c";}</style>').appendTo(span)
+                                            jQuery(target).next().next().get(0).appendChild(span.get(0))
+                                            target.className += " pure-button-disabled"
+                                            jQuery(target).next().get(0).className += " pure-button-disabled"
+                                            setTimeout(() => {
+                                                jQuery('#layout_10').get(0).style.display = "none"
+                                                jQuery(target).removeClass("pure-button-disabled")
+                                                jQuery(target).next().removeClass("pure-button-disabled")
+                                                jQuery(target).next().next().empty()
+                                                jQuery('#layout_10').after('<li class="lfr-nav-item" id="layout_11"><a><i class="icone-icons" style="font-size:15px">&nbsp;</i><a><a href="javascript:void(0)" onclick="jQuery(\'#layout_10\').get(0).style.display=\'inline-block\';jQuery(\'#submenu\').get(0).style.display=\'none\';jQuery(\'#layout_11\').get(0).style.display=\'none\';session={}">logout</a><div class="sub-menu" style="width:600%;left:-80%"></div></li>')
+                                                loadprofile()
+                                            }, 1000)
+                                            session = user
+                                        })
+                                        .catch((e) => jQuery(target).next().next().get(0).innerHTML = `<span style='color:red'<i class="icon-remove">&nbsp;</i>${e}</span>`)
+                                    }
+                                    function loadprofile(){
+                                        let shprofile = document.querySelector('#layout_11 > .sub-menu').attachShadow({mode:'open'});
+                                        shprofile.appendChild(document.querySelector('#tmpl_profile').content.cloneNode(true));
+                                    }
+                                    //document.querySelector('#myBtn').onclick = onregis;
+                                </script>
+                                <form class="pure-form pure-form-stacked" id="signin-form">
+                                    <fieldset>
+                                        <legend>Contas de Utilizador</legend>
+                                        <label for="stacked-email">Email</label>
+                                        <input type="email" id="stacked-email" placeholder="Email" />
+                                        <span class="pure-form-message">Este campo é obrigatório</span>
+                                        <label for="stacked-password">Password</label>
+                                        <input type="password" id="stacked-password" placeholder="Password" /> 
+                                    </fieldset>
+                                </form>
+                                <button type="submit" class="pure-button pure-button-primary" onclick="onlog(event)">Entrar</button> ou
+                                <button id="myBtn" class="pure-button pure-button-primary" onclick="onregis(event)">Registar</button>
+                                <div id="login-msg"></div>
+                            </template>
+                            
+                            <template id="tmpl_profile">
+                                <link href="https://cdn.rawgit.com/doximity/vital/v2.2.1/dist/css/vital.min.css" rel="stylesheet">
+                            
+                                <div class="row"><div class="section"><h2 class="center">Account</h2><hr class="small"><div class="col-1-4"><ul class="bordered-list"><li><a href="#" class="here">Profile</a></li><li><a href="#">Subscription</a></li><li><a href="#">Payment</a></li></ul></div><div class="col-3-4 bg-white padding no-first-last"><h2>Richard Hendricks<img src="../images/avatar-a245e1bb.png" class="float-right" alt="Avatar" width="15%"></h2><ul><li><small class="gray-light">Email</small><br><span>richard@piedpiper.com</span></li><li><small class="gray-light">Handle</small><br><span>@rHendricks</span></li><li><small class="gray-light">Description</small><br><span>Middle-out compression done right.</span></li></ul><p><small class="gray-light">About</small><br>Richard is the CEO (Chief Executive Officer) of Ronify, a company he founded and then was fired from. Isn’t that weird? Although he left four credits short of graduation, he attended Stanford, where none of his computer science classes mentioned the possibility of having an innovative software firm you created ripped from you by soulless bean counters.</p><p><a href="#" class="btn red">Edit Profile</a></p></div><div class="clear"></div></div></div>
+                            </template>
+                            
+                            <template id="tuical">
+                                <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+                                <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+                                <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
+                            
+                                <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+                                <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
+                                <script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
+                                <script src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+                            
+                                <div id="calendar" style="height: 800px;"></div>
+                            
+                                <script>
+                                    let Calendar = tui.Calendar;
+                            
+                                    var calendar = new Calendar('#calendar', {
+                                        defaultView: 'month',
+                                        taskView: true,
+                                        template: {
+                                            monthDayname: function(dayname) {
+                                                return '<span class="calendar-week-dayname-name">' + dayname.label + '</span>';
+                                            }
+                                        }
+                                    });
+                                </script>
+                            </template>
+                            
+                            <template id="fullcal">
+                                <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.css' rel='stylesheet' />
+                                <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.js'></script>
+                                <script>
+                            
+                                  document.addEventListener('DOMContentLoaded', function() {
+                                    var calendarEl = document.getElementById('calendar');
+                                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                                      initialView: 'dayGridMonth'
+                                    });
+                                    calendar.render();
+                                  });
+                            
+                                </script>
+                                <div id='calendar'></div>
+                            </template>
+                            <!--end templates-->
+                            <!--<div class="sub-menu">
+                                <div id="login">
+                                    <label for="user">Nome</label>
+                                    <input type="text" value="" placeholder="Insira o seu username" name="user" />
+                                    <div>
+                                        <input type="radio" id="huey" name="drone" value="sqlite"
+                                               checked>
+                                        <label for="huey">SQLite</label>
+                                        <input type="radio" id="dewey" name="drone" value="excel">
+                                        <label for="dewey">Excel</label>
+                                        <input type="radio" id="" name="drone" value="sso" disabled>
+                                        <label for="dewey">SSO</label>
+                                      </div>
+                                      
+                                      <div>
+                                      </div>
+                                    <button onclick=qsolver()>ok</button>
+                                </div>
+                                <div id="logout"></div>
+                            </div>-->
+                            <script>
+                                function xls() {
+                                    var url = "usersdb.xlsx";
+
+                                    /* set up async GET request */
+                                    var req = new XMLHttpRequest();
+                                    req.open("GET", url, true);
+                                    req.responseType = "arraybuffer";
+
+                                    req.onload = function(e) {
+                                        var workbook = XLSX.read(req.response);
+
+                                        var first_sheet_name = workbook.SheetNames[0];
+                                        var address_of_cell = 'B2';
+
+                                        /* Get worksheet */
+                                        var worksheet = workbook.Sheets[first_sheet_name];
+
+                                        /* Find desired cell */
+                                        var desired_cell = worksheet[address_of_cell];
+                                        var A2 = worksheet['A2'];
+
+                                        /* Get the value */
+                                        //var desired_value = (desired_cell ? desired_cell.v : undefined);
+
+                                        let connected = false;
+
+                                        if(desired_cell && desired_cell.v === document.querySelector('#login > input').value && !connected){
+                                                connected = true;
+                                                document.querySelector('#login').style.display = "none";
+                                                let p = document.createElement('p');
+                                                p.innerText = `Parabéns, está agora conectado como ${desired_cell.v} com id ${A2.v}`;
+                                                let button = document.createElement('button');
+                                                button.innerText = "Logout";
+                                                button.onclick = function(){
+                                                    document.querySelector('#login').style.display = "block";
+                                                    document.querySelector('#logout').style.display = "none";
+                                                    document.querySelector('#login > input').value = "";
+                                                    connected = false;
+                                                }
+                                                document.querySelector('#logout').innerHTML = "";
+                                                document.querySelector('#logout').prepend(p, button);
+                                        }
+                                            else if(connected) {
+                                                document.querySelector('#login').style.display = "none";
+                                                let p = document.createElement('p');
+                                                p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+                                                let button = document.createElement('button');
+                                                button.innerText = "Logout";
+                                                button.onclick = function(){
+                                                    document.querySelector('#login').style.display = "block";
+                                                    document.querySelector('#logout').style.display = "none";
+                                                    document.querySelector('#login > input').value = "";
+                                                    result = [];
+                                                    connected = false;
+                                                }
+                                                document.querySelector('#logout').innerHTML = "";
+                                                document.querySelector('#logout').prepend(p, button);
+                                            } 
+                                            else if (document.querySelector('#login > input').value === "") {
+                                                document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+                                                document.querySelector('#logout').style.display = "block";
+                                            } else {
+                                                document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+                                                document.querySelector('#logout').style.display = "block";
+                                                document.querySelector('#login > input').value = "";
+                                            }
+                                    }
+
+                                    req.send();
+                                }
+                                function qsolver (ev) {
+                                    const rbs = document.querySelectorAll('input[type=radio][name=drone]');
+                                    for (const rb of rbs) {
+                                        if (rb.checked && rb.value === "excel") {
+                                            xls();
+                                            return;
+                                        }
+                                    }
+                                    //danger! sanitize user input before commit query
+                                    let result = window.query(document.querySelector('#login > input').value), connected = false;
+                                    result.then(resp => {
+                                        if (resp.length > 0 && !connected){
+                                            connected = true;
+                                            document.querySelector('#login').style.display = "none";
+                                            let p = document.createElement('p');
+                                            p.innerText = `Parabéns, está agora conectado como ${resp[0].name} com id ${resp[0].id}`;
+                                            let button = document.createElement('button');
+                                            button.innerText = "Logout";
+                                            button.onclick = function(){
+                                                document.querySelector('#login').style.display = "block";
+                                                document.querySelector('#logout').style.display = "none";
+                                                document.querySelector('#login > input').value = "";
+                                                result = [];
+                                                connected = false;
+                                            }
+                                            document.querySelector('#logout').innerHTML = "";
+                                            document.querySelector('#logout').prepend(p, button);
+                                        }
+                                        else if(connected) {
+                                            document.querySelector('#login').style.display = "none";
+                                            let p = document.createElement('p');
+                                            p.innerText = `${document.querySelector('#login > input').value} já está connectado, faça logout para sair e entrar com outra conta se pretender`;
+                                            let button = document.createElement('button');
+                                            button.innerText = "Logout";
+                                            button.onclick = function(){
+                                                document.querySelector('#login').style.display = "block";
+                                                document.querySelector('#logout').style.display = "none";
+                                                document.querySelector('#login > input').value = "";
+                                                result = [];
+                                                connected = false;
+                                            }
+                                            document.querySelector('#logout').innerHTML = "";
+                                            document.querySelector('#logout').prepend(p, button);
+                                        } 
+                                        else if (document.querySelector('#login > input').value === "") {
+                                            document.querySelector('#logout').innerHTML = "Por favor preencha o campo Nome com o seu username";
+                                        } else {
+                                            document.querySelector('#logout').innerHTML = `${document.querySelector('#login > input').value} não está registado`;
+                                            document.querySelector('#logout').style.display = "block";
+                                            document.querySelector('#login > input').value = "";
+                                        }
+                                    }).catch((err)=>{console.log(err);});
+                                    
+                                }
+                            </script>
+                        </li>
+                        <li class="lfr-nav-item dropdown" id="layout_2"> 
+                            <a class="dropdown-toggle" href="javascript:void(0);"><span>Mais<b class="icon-caret-down"></b></span></a> 
+                            <ul class="sub-menu"> 
+                                <li class="lfr-nav-item" id="layout_3">
+                                    <a href="https://bibliotecacolos.wixsite.com/website" target="_blank">Biblioteca</a>
+                                </li> 
+                                <li class="lfr-nav-item" id="layout_4">
+                                    <a href="horarios.html">Horário Lectivo</a>
+                                </li>
+                                <li class="lfr-nav-item" id="layout_5">
+                                    <a href="horario.html">Horários Atendimento e Serviços</a> 
+                                </li>
+                                <li class="lfr-nav-item" id="layout_7">
+                                    <a href="https://aecolos.github.io/goodmira/" target="_blank">Goodmira</a> 
+                                </li>
+                                <!--<li class="lfr-nav-item" id="layout_6">
+                                    <a href="https://github.com/aecolos/site/wiki" target="_blank">Wiki</a>
+                                </li>-->
+                            </ul>
+                        </li>
+                        <li class="search-icon">
+                            <i class="icone-search">&nbsp;</i>
+                        </li> 
+                        <script>
+                            let docs = [{
+                                "id": document.documentURI,
+                                "txt": document.documentElement.innerText
+                            }];
+                            let idx = lunr(function () {
+                                this.ref('id');
+                                this.field('txt');
+
+                                docs.forEach(function (doc) {
+                                    this.add(doc)
+                                }, this)
+                            });
+                            document.querySelector('.icon-angle-right').addEventListener('click', function (evt){
+                                //idx.search(document.querySelector('.search-box input').value);
+                            });
+                        </script>
+                    </ul> 
+                </div> 
+            </nav> 
+        </div>
+    </header>
